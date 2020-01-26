@@ -34,8 +34,8 @@ public class BoxGameImpl implements BoxGame {
     boxContestant.setChangeYourMind(true);
     int winningChangeOfBox = playGameOverAndOverAgain(boxContestant, numberOfGames, boxes);
 
-    String result = " When {0} played {1} times and changed {0} won {2} times." +
-        " When played another {1} times and didn''t change box {0} won {3} times";
+    String result = " When {0} played {1} times and changed box {0} won {2} times."
+        + " When played another {1} times and didn''t change box {0} won {3} times";
     return MessageFormat.format(result, contestantName, numberOfGames, winningChangeOfBox,
         winningNoChangeOfBox);
   }

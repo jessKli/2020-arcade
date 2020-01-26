@@ -11,9 +11,9 @@ public interface BoxGame {
 
   /**
    * Create the boxContestant and play the game equally many times with change the box as
-   * not changeing the box.
-   * @param numberOfGames number of times to play the game
-   * @return result from the played rounds
+   * not changing the box.
+   * @param numberOfGames number of times to play the game.
+   * @return result from the played rounds.
    */
   String playBoxGamesWithBothChangeYourMindAndNot(String contestantName, int numberOfGames,
       Box ...boxes);
