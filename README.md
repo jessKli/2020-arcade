@@ -1,5 +1,5 @@
 För att spela spelet:
- 1. Klona projektet till din dator
+ 1. Klona projektet till din dator (måste ha Maven 3.2, och Java 1.8)
  2. Öppna en terminal och ställ dig i projektets root och skriv in: ./mvnw spring-boot:run
  eller öppna projektet i Intellij och kör ArcadeApplication
  4. Öppna en webbläsare och klistra in url:
