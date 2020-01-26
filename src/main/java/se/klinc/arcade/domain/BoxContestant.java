@@ -4,10 +4,11 @@ public class BoxContestant extends Contestant {
 
   private Box selected;
 
-  private boolean changeBox = false;
+  private boolean changeYourMind;
 
-  public BoxContestant(String name) {
+  public BoxContestant(String name, boolean changeYourMind) {
     super(name);
+    this.changeYourMind = changeYourMind;
   }
 
   public Box getSelected() {
@@ -18,19 +19,19 @@ public class BoxContestant extends Contestant {
     this.selected = selected;
   }
 
-  public boolean isChangeBox() {
-    return changeBox;
+  public boolean isChangeYourMind() {
+    return changeYourMind;
   }
 
-  public void setChangeBox(boolean changeBox) {
-    this.changeBox = changeBox;
+  public void setChangeYourMind(boolean changeYourMind) {
+    this.changeYourMind = changeYourMind;
   }
 
   @Override
   public String toString() {
-    return "Contestant{"
+    return "BoxContestant{"
         + "selected=" + selected
-        + ", changeBox=" + changeBox
+        + ", changeYourMind=" + changeYourMind
         + '}';
   }
 }

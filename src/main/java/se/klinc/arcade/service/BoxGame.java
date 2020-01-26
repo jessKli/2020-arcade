@@ -15,5 +15,6 @@ public interface BoxGame {
    * @param numberOfGames number of times to play the game
    * @return result from the played rounds
    */
-  String startBoxGames(String contestantName, int numberOfGames, Box... boxes);
+  String playBoxGamesWithBothChangeYourMindAndNot(String contestantName, int numberOfGames,
+      Box ...boxes);
 }

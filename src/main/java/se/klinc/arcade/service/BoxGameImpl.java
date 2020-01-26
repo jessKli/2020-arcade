@@ -14,7 +14,7 @@ public class BoxGameImpl implements BoxGame {
 
   @Override
   public Box[] createBoxes() {
-    // Create three boxes and select which one has the money
+    // Create three boxes
     Box[] boxes = new Box[3];
     for(int i = 0; i<3; i++) {
       boxes[i] = (new Box(i));
@@ -23,39 +23,33 @@ public class BoxGameImpl implements BoxGame {
   }
 
   @Override
-  public String startBoxGames(String contestantName, int numberOfGames, Box... boxes) {
-    int winningNoChangeOfBox = 0;
-    int winningChangeOfBox = 0;
+  public String playBoxGamesWithBothChangeYourMindAndNot(String contestantName,
+      int numberOfGames, Box ... boxes) {
+    // Create the contestant, and he will not change his mind about change box
+    BoxContestant boxContestant = new BoxContestant(contestantName, false);
 
-    BoxContestant contestant = new BoxContestant(contestantName);
+    int winningNoChangeOfBox = playGameOverAndOverAgain(boxContestant, numberOfGames, boxes);
 
-    for(int i = 0;i<numberOfGames;i++){
+    // Now the contestant will change the box
+    boxContestant.setChangeYourMind(true);
+    int winningChangeOfBox = playGameOverAndOverAgain(boxContestant, numberOfGames, boxes);
 
-      if(play(contestant, boxes)){
-        winningNoChangeOfBox++;
-      }
-      resetBoxes(boxes);
-    }
-    contestant.setChangeBox(true);
-    for(int i = 0;i<numberOfGames;i++){
-
-      if(play(contestant, boxes)){
-        winningChangeOfBox++;
-      }
-      resetBoxes(boxes);
-    }
-    String result = " When {0} playing {1} times if you change box you won {2} times." +
-        " When playing another {1} times and you didn''t change box you won {3} times";
-
-    return MessageFormat.format(result,  contestantName,numberOfGames, winningChangeOfBox,
-        numberOfGames, winningNoChangeOfBox);
+    String result = " When {0} played {1} times and changed {0} won {2} times." +
+        " When played another {1} times and didn''t change box {0} won {3} times";
+    return MessageFormat.format(result, contestantName, numberOfGames, winningChangeOfBox,
+        winningNoChangeOfBox);
   }
 
-  private void resetBoxes(Box... boxes) {
-    for(Box box : boxes) {
-      box.setMoney(false);
-      box.setTurned(false);
+  private int playGameOverAndOverAgain(BoxContestant boxContestant, int numberOfGames, Box ... boxes) {
+    int result = 0;
+    for (int i = 0; i < numberOfGames; i++) {
+
+      if (play(boxContestant, boxes)) {
+        result++;
+      }
+      resetBoxes(boxes);
     }
+    return result;
   }
 
   private boolean play(BoxContestant contestant, Box... boxes) {
@@ -71,8 +65,8 @@ public class BoxGameImpl implements BoxGame {
   }
 
   private boolean isAWinner(BoxContestant contestant) {
-    return (contestant.isChangeBox() && !contestant.getSelected().isMoney())
-        || (!contestant.isChangeBox() && contestant.getSelected().isMoney());
+    return (contestant.isChangeYourMind() && !contestant.getSelected().isMoney())
+        || (!contestant.isChangeYourMind() && contestant.getSelected().isMoney());
   }
 
   private void turnBox(Box selectedByContestant, Box... boxes) {
@@ -93,5 +87,12 @@ public class BoxGameImpl implements BoxGame {
 
   public static int selectBox(Box... boxes) {
     return new Random().nextInt(boxes.length);
+  }
+
+  private void resetBoxes(Box... boxes) {
+    for(Box box : boxes) {
+      box.setMoney(false);
+      box.setTurned(false);
+    }
   }
 }

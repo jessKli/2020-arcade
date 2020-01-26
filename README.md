@@ -5,9 +5,10 @@ För att spela spelet:
  4. Öppna en webbläsare och klistra in url:
  http://localhost:8080/arcade/playBoxes/[ggr som spelet ska spelas]/[namn på tävlande]
  ex på url:
- http://localhost:8080/arcade/playBoxes/500/Jessica
+ http://localhost:8080/arcade/playBoxesBothWays/500/Jessica
  5. Gör refresh i webbläsaren för att köra igen
 
 Förvaltning:
-Ska det gå att spela några andra spel är det bara att lägga till en ny tjänst i GameRestController,
-skapa en ny tjänst för att spela det nya spelet.
+Spela spelet ChangeBox utan att ändra den valda boxen - skapa en ny public metod i tjänsten BoxGame,
+ som anropar den befintliga private metoden playGameOverAndOverAgain, skapa sedan en ny metod i
+ GameRestController för att anropa metoden
