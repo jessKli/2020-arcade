@@ -7,8 +7,3 @@ För att spela spelet:
  ex på url:
  http://localhost:8080/arcade/playBoxesBothWays/500/Jessica
  5. Gör refresh i webbläsaren för att köra igen
-
-Förvaltning:
-Spela spelet ChangeBox utan att ändra den valda boxen - skapa en ny public metod i tjänsten BoxGame,
-som anropar den befintliga private metoden playGameOverAndOverAgain, skapa sedan en ny metod i
-GameRestController för att anropa metoden
