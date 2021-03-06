@@ -1,6 +1,9 @@
 package se.klinc.arcade.service;
 
 import se.klinc.arcade.domain.Box;
+import se.klinc.arcade.domain.ResultContenstant;
+
+import java.util.List;
 
 public interface BoxGame {
 
@@ -17,4 +20,6 @@ public interface BoxGame {
    */
   String playBoxGamesWithBothChangeYourMindAndNot(String contestantName, int numberOfGames,
       Box ...boxes);
+
+  List<ResultContenstant> getAllResults();
 }

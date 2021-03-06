@@ -1,8 +1,12 @@
 package se.klinc.arcade.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Component;
 import se.klinc.arcade.domain.Box;
 import se.klinc.arcade.domain.BoxContestant;
+import se.klinc.arcade.domain.ResultContenstant;
+import se.klinc.arcade.repository.ResultRepository;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -10,7 +14,11 @@ import java.util.List;
 import java.util.Random;
 
 @Component
+//@EnableMongoRepositories(basePackageClasses = ResultRepository.class)
 public class BoxGameImpl implements BoxGame {
+
+  @Autowired
+  private ResultRepository repo;
 
   @Override
   public Box[] createBoxes() {
@@ -34,10 +42,19 @@ public class BoxGameImpl implements BoxGame {
     boxContestant.setChangeYourMind(true);
     int winningChangeOfBox = playGameOverAndOverAgain(boxContestant, numberOfGames, boxes);
 
+    ResultContenstant resultContestant = new ResultContenstant
+        (contestantName, numberOfGames, winningChangeOfBox, winningNoChangeOfBox);
+
+    repo.save(resultContestant);
     String result = " When {0} played {1} times and changed box {0} won {2} times."
         + " When played another {1} times and didn''t change box {0} won {3} times";
     return MessageFormat.format(result, contestantName, numberOfGames, winningChangeOfBox,
         winningNoChangeOfBox);
+  }
+
+  @Override
+  public List<ResultContenstant> getAllResults() {
+    return repo.findAll();
   }
 
   private int playGameOverAndOverAgain(BoxContestant boxContestant, int numberOfGames, Box ... boxes) {

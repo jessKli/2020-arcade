@@ -5,8 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import se.klinc.arcade.domain.Box;
+import se.klinc.arcade.domain.BoxContestant;
+import se.klinc.arcade.domain.ResultContenstant;
 import se.klinc.arcade.service.BoxGame;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.constraints.NotNull;
 
 @RestController
@@ -40,5 +45,11 @@ public class GameRestController {
     String result = boxGame.playBoxGamesWithBothChangeYourMindAndNot(name, numberOfTimes,
         boxGame.createBoxes());
     return result;
+  }
+
+  @GetMapping(value = "/playBoxesBothWays/result")
+  public List<ResultContenstant> result() {
+    List<ResultContenstant> results = boxGame.getAllResults();
+    return results;
   }
 }
