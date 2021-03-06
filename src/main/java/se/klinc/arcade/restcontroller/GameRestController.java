@@ -17,7 +17,7 @@ public class GameRestController {
   private BoxGame boxGame;
 
   /**
-   * Starts the game "Play boxes" which plays the games with both change your mind and not.
+   * Starts game "Play boxes" which plays the games with both change your mind and not.
    * @param times number of times the game will be played.
    * @param name name of the boxContestant.
    * @return result.
