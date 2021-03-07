@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  app:
+    image: jesskli/arcade:session2
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+  mongodb:
+    image : mongo
+    container_name: mongodb
+    environment:
+    - PUID=1000
+    - PGID=1000
+    volumes:
+      - /Users/jessica.klinc/PRIVAT/dockercourse/mongodb/database/arcade:/data/db # place where data is stored between session
+    ports:
+    - 27017:27017
+    restart: unless-stopped

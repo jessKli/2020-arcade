@@ -5,6 +5,6 @@ ARG JAR_FILE=target/*.jar
 # Copy jar
 COPY ${JAR_FILE} app.jar
 #
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java", "-Dspring.data.mongodb.uri=mongodb://mongodb/user_db","-jar","/app.jar"]
 #
 EXPOSE 8080
