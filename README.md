@@ -7,3 +7,4 @@ För att spela spelet:
  ex på url:
  http://localhost:8080/arcade/playBoxesBothWays/500/Jessica
  5. Gör refresh i webbläsaren för att köra igen
+ 6. http://localhost:8080/arcade/playBoxesBothWays/result för att få alla resultat som finns i db
