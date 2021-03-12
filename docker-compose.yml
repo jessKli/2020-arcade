@@ -13,7 +13,7 @@ services:
     - PUID=1000
     - PGID=1000
     volumes:
-      - /Users/jessica.klinc/PRIVAT/dockercourse/mongodb/database/arcade:/data/db # place where data is stored between session
+      - $DATABASELOCATION:/data/db
     ports:
     - 27017:27017
     restart: unless-stopped
